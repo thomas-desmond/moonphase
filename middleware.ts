@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   console.log(request.geo)
   if (request.geo && request.geo.latitude && request.geo.longitude) {
-    return NextResponse.redirect(new URL(`/?lat=${request.geo.latitude}&lng=${request.geo.longitude}`))
+    return NextResponse.redirect(new URL(`/?lat=${request.geo.latitude}&lng=${request.geo.longitude}`, request.url))
   }
 }
 
