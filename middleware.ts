@@ -4,6 +4,10 @@ import type { NextRequest } from 'next/server'
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   console.log(request.geo)
+  if (request.nextUrl.pathname.includes('/?')) {
+    return;
+  }
+
   if (request.geo && request.geo.latitude && request.geo.longitude) {
     return NextResponse.redirect(new URL(`/?lat=${request.geo.latitude}&lng=${request.geo.longitude}`, request.url))
   }
